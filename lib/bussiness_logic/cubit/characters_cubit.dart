@@ -20,9 +20,13 @@ class CharactersCubit extends Cubit<CharactersStates> {
     emit(CharactersLoadingState());
     try {
       repositoryModel.getAllData().then((characters) {
-        emit(CharactersLoadedState(list: characters));
-      }).onError((error, stackTrace) {
-        emit(CharactersExceptionState(error: error.toString()));
+        if (characters.isEmpty) {
+          emit(CharactersExceptionState(error: "error"));
+        } else {
+          emit(CharactersLoadedState(list: characters));
+        }
+      }).catchError((onError) {
+        emit(CharactersExceptionState(error: onError.toString()));
       });
     } catch (e) {
       emit(CharactersExceptionState(error: e.toString()));

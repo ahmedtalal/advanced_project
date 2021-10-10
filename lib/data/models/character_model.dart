@@ -5,10 +5,12 @@ class CharacterModel {
   late String birthDay;
   late String image;
   late String status;
+  late String category;
   late String portrayed;
   late List<dynamic> jobs;
   late List<dynamic> appearance;
   late List<dynamic> betterCallSaulAppearance;
+
   CharacterModel({
     required this.charId,
     required this.name,
@@ -16,6 +18,7 @@ class CharacterModel {
     required this.birthDay,
     required this.image,
     required this.status,
+    required this.category,
     required this.portrayed,
     required this.jobs,
     required this.appearance,
@@ -32,7 +35,8 @@ class CharacterModel {
     this.portrayed = json['portrayed'];
     this.jobs = json['occupation'];
     this.appearance = json['appearance'];
-    this.appearance = json['better_call_saul_appearance'];
+    this.betterCallSaulAppearance = json['better_call_saul_appearance'];
+    this.category = json['category'];
   }
 
   static Map<String, dynamic> toJson(CharacterModel model) => {
@@ -46,5 +50,6 @@ class CharacterModel {
         "occupation": model.jobs,
         "appearance": model.appearance,
         "better_call_saul_appearance": model.betterCallSaulAppearance,
+        "category": model.category,
       };
 }

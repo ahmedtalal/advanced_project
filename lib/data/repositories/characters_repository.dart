@@ -9,6 +9,7 @@ class CharactersRepository extends RepositoryModel {
   @override
   Future<List<CharacterModel>> getAllData() async {
     final characters = await apiServicesModel.getAllCharacters();
+    print(characters.length);
     return characters.map((character) => convertToModel(character)).toList();
   }
 

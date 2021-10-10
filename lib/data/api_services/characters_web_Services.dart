@@ -23,8 +23,11 @@ class CharactersWebServices extends ApiServicesModel {
       Response response = await _dio.get('characters');
       print(response.data.toString());
       return response.data;
+    } on DioError catch (e) {
+      print("the server error => ${e.error.toString()}");
+      return [];
     } catch (e) {
-      print(e.toString());
+      print("the catch error => ${e.toString()}");
       return [];
     }
   }
